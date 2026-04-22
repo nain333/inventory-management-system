@@ -1,0 +1,29 @@
+{
+  "name": "inventory-management",
+  "version": "1.0.0",
+  "description": "An inventory managment system using nodejs",
+  "homepage": "https://github.com/nain333/inventory-management-system#readme",
+  "bugs": {
+    "url": "https://github.com/nain333/inventory-management-system/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nain333/inventory-management-system.git"
+  },
+  "license": "ISC",
+  "author": "nain333",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind": "npx tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^3.4.3"
+  }
+}
