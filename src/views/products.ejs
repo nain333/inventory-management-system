@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <nav class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
+
+      <!-- Logo -->
+      <div class="text-xl font-bold">
+        Inventory
+      </div>
+
+      <!-- Links -->
+      <div class="hidden md:flex gap-6">
+        <a href="#" class="hover:text-emerald-400 text-xl">Dashboard</a>
+        <a href="#" class="hover:text-emerald-400 text-xl">Products</a>
+        <a href="#" class="hover:text-emerald-400 text-xl">Orders</a>
+      </div>
+
+      <!-- Mobile button -->
+      <button class="md:hidden bg-gray-700 px-3 py-1 rounded">
+        <i class="fa-solid fa-bars text-white text-xl"></i>
+      </button>
+
+    </nav>
+  </header>
+  <main>
+    <section id="product__section">
+      <h1 class="text-4xl text-center py-2  ">Products</h1>
+      <div class="w-full overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse bg-black text-white">
+
+          <!-- HEADER -->
+          <thead>
+            <tr class="bg-gray-800">
+              <th class="border px-2 py-2 md:px-4 text-center">ID</th>
+              <th class="border px-2 py-2 md:px-4 text-left">Name</th>
+              <th class="border px-2 py-2 md:px-4 text-center">Price</th>
+
+              <!-- Hide heavy columns on small screens -->
+              <th class="border px-2 py-2 md:px-4 text-left hidden md:table-cell">
+                Description
+              </th>
+              <th class="border px-2 py-2 md:px-4 text-center hidden sm:table-cell">
+                Image
+              </th>
+            </tr>
+          </thead>
+
+          <!-- BODY -->
+          <tbody>
+            <% products.forEach(product=> {%>
+
+
+
+              <tr class="border-b hover:bg-gray-700">
+                <td class="border px-2 py-2 md:px-4 text-center">
+                  <%= product.id %>
+                </td>
+                <td class="border px-2 py-2 md:px-4 text-left">
+                  <%= product.name %>
+                </td>
+                <td class="border px-2 py-2 md:px-4 text-center">
+                  <%= product.price %>
+                </td>
+
+                <td class="border px-2 py-2 md:px-4 text-left hidden md:table-cell">
+                  <%= product.desc %>
+                </td>
+
+                <td class="border px-2 py-2 md:px-4 text-center hidden sm:table-cell">
+                  <img src="<%= product.imageUrl %>" class="w-16 h-24 md:w-20 md:h-28 object-cover mx-auto" />
+                </td>
+              </tr>
+              <% }) %>
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+</body>
+
+</html>

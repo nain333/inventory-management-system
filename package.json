@@ -19,6 +19,7 @@
     "tailwind": "npx tailwindcss -i ./public/css/input.css -o ./src/views/style.css --watch"
   },
   "dependencies": {
+    "ejs": "^5.0.2",
     "express": "^5.2.1"
   },
   "devDependencies": {
