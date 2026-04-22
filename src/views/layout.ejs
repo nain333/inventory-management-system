@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="text-xl font-bold">
+                Inventory
+            </div>
+
+            <!-- Links -->
+            <div class="hidden md:flex gap-6">
+                <a href="#" class="hover:text-emerald-400 text-xl">Dashboard</a>
+                <a href="#" class="hover:text-emerald-400 text-xl">Products</a>
+                <a href="#" class="hover:text-emerald-400 text-xl">Orders</a>
+            </div>
+
+            <!-- Mobile button -->
+            <button class="md:hidden bg-gray-700 px-3 py-1 rounded">
+                <i class="fa-solid fa-bars text-white text-xl"></i>
+            </button>
+
+        </nav>
+    </header>
+
+    <main>
+        <section id="product__section">
+            <h1 class="text-4xl text-center py-2  ">Products</h1>
+            <!-- placehoalder for body content -->
+            <%- body %>
+            <div class="w-full overflow-x-auto">
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

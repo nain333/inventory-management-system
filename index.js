@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import ejsLayouts from 'express-ejs-layouts';
 import ProductController from "./src/controllers/product.controller.js"
 
 const app = express();
@@ -7,6 +8,7 @@ const app = express();
 app.set('view engine','ejs')
 app.set('views',path.join(path.resolve(),'src','views'))
 app.use(express.static("src/views"));
+app.use(ejsLayouts)
 // create an instance of productController
 const productController = new ProductController();
 
