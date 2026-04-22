@@ -12,11 +12,11 @@
   },
   "license": "ISC",
   "author": "nain333",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tailwind": "npx tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch"
+    "tailwind": "npx tailwindcss -i ./public/css/input.css -o ./src/views/style.css --watch"
   },
   "dependencies": {
     "express": "^5.2.1"

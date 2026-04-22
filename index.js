@@ -1,20 +1,19 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
+import ProductController from "./src/controllers/product.controller.js"
 
 const app = express();
-app.use(express.static("public"));
+app.use(express.static("src/views"));
+// create an instance of productController
+const productController = new ProductController();
+
 
 const port = process.env.PORT || 3000;
 
 // Home route
-app.get('/', (req, res) => {
-  res.send('Server is working');
-});
+app.get('/', productController.getProduct)
 
 
-app.get('/products', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src/views/products.html'));
-});
 
 // Start server
 app.listen(port, () => {
