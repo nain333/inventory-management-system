@@ -4,6 +4,8 @@ import ejsLayouts from 'express-ejs-layouts';
 import ProductController from "./src/controllers/product.controller.js"
 
 const app = express();
+// parse from data
+app.use(express.urlencoded({extended:true}))
 // set up viewEngine
 app.set('view engine','ejs')
 app.set('views',path.join(path.resolve(),'src','views'))
@@ -13,10 +15,12 @@ app.use(ejsLayouts)
 const productController = new ProductController();
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // Home route
 app.get('/', productController.getProduct.bind(productController))
+app.get('/new',productController.getAddForm)
+app.post('/',productController.addnewProduct)
 
 
 

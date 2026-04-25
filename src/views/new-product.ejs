@@ -1,0 +1,73 @@
+<div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg">
+  
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">
+    Add New Product
+  </h2>
+
+  <!-- ALERT -->
+  <% if (errorMessages && errorMessages.length > 0) { %>
+    <div id="alertBox" class="mb-4 flex justify-between p-4 rounded-lg border border-red-200 bg-red-50 text-red-800">
+      
+      <div>
+        <p class="font-semibold mb-2">Errors:</p>
+        <ul class="list-disc pl-5 text-sm">
+          <% errorMessages.forEach(error => { %>
+            <li><%= error %></li>
+          <% }) %>
+        </ul>
+      </div>
+
+      <button onclick="document.getElementById('alertBox').remove()" 
+              class="ml-4 text-red-500 font-bold">
+        ×
+      </button>
+    </div>
+  <% } %>
+
+  <!-- FORM -->
+  <form action="/" method="POST" class="space-y-4">
+
+    <!-- Name -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">
+        Product Name
+      </label>
+      <input type="text" name="name"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">
+        Description
+      </label>
+      <textarea name="desc" rows="3"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+    </div>
+
+    <!-- Price -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">
+        Price
+      </label>
+      <input type="number" name="price"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+    </div>
+
+    <!-- Image URL -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">
+        Image URL
+      </label>
+      <input type="text" name="imageUrl"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+    </div>
+
+    <!-- Submit -->
+    <button type="submit"
+      class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
+      Add Product
+    </button>
+
+  </form>
+</div>

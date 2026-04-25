@@ -4,14 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind Output -->
     <link rel="stylesheet" href="/style.css">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Document</title>
+
+    <title>Inventory</title>
 </head>
 
-<body>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
     <header>
-        <nav class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
+        <nav class="w-full bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
 
             <!-- Logo -->
             <div class="text-xl font-bold">
@@ -20,9 +27,9 @@
 
             <!-- Links -->
             <div class="hidden md:flex gap-6">
-                <a href="#" class="hover:text-emerald-400 text-xl">Dashboard</a>
-                <a href="#" class="hover:text-emerald-400 text-xl">Products</a>
-                <a href="#" class="hover:text-emerald-400 text-xl">Orders</a>
+                
+                <a href="/" class="hover:text-emerald-400 text-lg">Products</a>
+                <a href="/new" class="hover:text-emerald-400 text-lg">Add Product</a>
             </div>
 
             <!-- Mobile button -->
@@ -33,14 +40,20 @@
         </nav>
     </header>
 
-    <main>
-        <section id="product__section">
-            <h1 class="text-4xl text-center py-2  ">Products</h1>
-            <!-- placehoalder for body content -->
+    <!-- Main Content -->
+    <main class="min-h-screen flex flex-col items-center">
+
+        <!-- Centered Content Container -->
+        <div class="w-full max-w-xl px-4 mt-8">
+
+            <!-- Page Title -->
+            <h1 class="text-4xl text-center mb-6">Products</h1>
+
+            <!-- Dynamic View Content -->
             <%- body %>
-            <div class="w-full overflow-x-auto">
-            </div>
-        </section>
+
+        </div>
+
     </main>
 
 </body>
