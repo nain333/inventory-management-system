@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import ejsLayouts from 'express-ejs-layouts';
 import ProductController from "./src/controllers/product.controller.js"
+import { validateRequest } from './src/controllers/middlewares/validation.middleware.js';
 
 const app = express();
 // parse from data
@@ -20,7 +21,7 @@ const port = process.env.PORT || 5000;
 // Home route
 app.get('/', productController.getProduct.bind(productController))
 app.get('/new',productController.getAddForm)
-app.post('/',productController.addnewProduct)
+app.post('/',validateRequest,productController.addnewProduct)
 
 
 
