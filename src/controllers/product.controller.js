@@ -1,25 +1,82 @@
-import path from 'path'
-import ProductModel from '../models/product.model.js'
-export default class ProductController{
-    
-    getProduct(req,res){
-        let products = ProductModel.get();
-        console.log(products)
-        console.log('inside controller')
-        res.render('products',{products:products})
+// controllers/product.controller.js
 
+import ProductModel from "../models/product.model.js";
 
+export default class ProductController {
+  // SHOW ALL PRODUCTS
+  getProduct(req, res) {
+    const products = ProductModel.get();
+
+    res.render("products", {
+      products: products,
+    });
+  }
+
+  // SHOW ADD PRODUCT FORM
+  getAddForm(req, res) {
+    res.render("new-product", {
+      errorMessages: [],
+    });
+  }
+
+  // ADD NEW PRODUCT
+  addnewProduct(req, res, next) {
+    ProductModel.add(req.body);
+
+    const products = ProductModel.get();
+
+    res.render("products", {
+      products,
+    });
+  }
+
+  // SHOW UPDATE PRODUCT FORM
+  getUpdateProductVeiw(req, res, next) {
+    const { id } = req.params;
+
+    const productFound = ProductModel.getById(id);
+
+    if (productFound) {
+      res.render("update-product", {
+        product: productFound,
+        errorMessages: null,
+      });
+    } else {
+      res.status(404).send("Product not found");
     }
-    getAddForm(req,res){
-        res.render('new-product',{errorMessages:[]})
+  }
 
+  // UPDATE PRODUCT
+  updateProduct(req, res, next) {
+    const { id } = req.params;
+
+    const updated = ProductModel.update(id, req.body);
+
+    if (updated) {
+      const products = ProductModel.get();
+
+      res.render("products", {
+        products,
+      });
+    } else {
+      res.status(404).send("Product not found");
     }
-    addnewProduct(req, res, next) {
-  
-  // Save if valid
-  ProductModel.add(req.body);
-  const products = ProductModel.get();
+  }
 
-  res.render("products", { products });
+  // DELETE PRODUCT
+  deleteProduct(req, res, next) {
+    const { id } = req.params;
+
+    const deleted = ProductModel.delete(id);
+
+    if (deleted) {
+      const products = ProductModel.get();
+
+      res.render("products", {
+        products,
+      });
+    } else {
+      res.status(404).send("Product not found");
+    }
+  }
 }
-} 

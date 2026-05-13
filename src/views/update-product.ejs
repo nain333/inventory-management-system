@@ -1,0 +1,82 @@
+<div class="p-10">
+
+    <h1 class="text-3xl font-bold mb-6">
+        Update Product
+    </h1>
+
+    <% if (errorMessages) { %>
+
+        <% errorMessages.forEach((msg) => { %>
+
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+                <%= msg %>
+            </div>
+
+        <% }) %>
+
+    <% } %>
+
+    <form action="/update-product/<%= product.id %>" method="POST">
+
+        <div class="mb-4">
+            <label class="block mb-2">
+                Product Name
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                value="<%= product.name %>"
+                class="border w-full p-2"
+            >
+        </div>
+
+        <div class="mb-4">
+            <label class="block mb-2">
+                Product Description
+            </label>
+
+            <textarea
+                name="desc"
+                class="border w-full p-2"
+                rows="4"
+            ><%= product.desc %></textarea>
+        </div>
+
+        <div class="mb-4">
+            <label class="block mb-2">
+                Price
+            </label>
+
+            <input
+                type="number"
+                name="price"
+                step="0.01"
+                value="<%= product.price %>"
+                class="w-full border p-2 rounded"
+            >
+        </div>
+
+        <div class="mb-6">
+            <label class="block mb-2">
+                Image URL
+            </label>
+
+            <input
+                type="text"
+                name="imageUrl"
+                value="<%= product.imageUrl %>"
+                class="border w-full p-2"
+            >
+        </div>
+
+        <button
+            type="submit"
+            class="bg-blue-600 text-white px-6 py-2 rounded"
+        >
+            Update Product
+        </button>
+
+    </form>
+
+</div>

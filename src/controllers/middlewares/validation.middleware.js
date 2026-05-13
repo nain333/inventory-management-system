@@ -1,26 +1,63 @@
 import { body, validationResult } from "express-validator";
 
 export const validateRequest = [
+
+  // Name Validation
   body("name")
-    .notEmpty().withMessage("Name is required")
-    .isLength({ min: 5 }).withMessage("Name must be at least 5 characters"),
+    .notEmpty()
+    .withMessage("Name is required")
+    .isLength({ min: 5 })
+    .withMessage("Name must be at least 5 characters"),
 
+  // Price Validation
   body("price")
-    .notEmpty().withMessage("Price is required")
-    .isFloat({ gt: 0 }).withMessage("Price should be a positive value"),
+    .notEmpty()
+    .withMessage("Price is required")
+    .isFloat({ gt: 0 })
+    .withMessage("Price should be a positive value"),
 
+  // Image URL Validation
   body("imageUrl")
-    .notEmpty().withMessage("Image URL is required")
-    .isURL().withMessage("Invalid URL"),
+    .notEmpty()
+    .withMessage("Image URL is required")
+    .isURL()
+    .withMessage("Invalid URL"),
 
+  // Final Middleware
   (req, res, next) => {
+
     const errors = validationResult(req);
 
     console.log("errors:", errors.array());
 
+    // If validation fails
     if (!errors.isEmpty()) {
+
+      // UPDATE PRODUCT PAGE
+      if (req.originalUrl.includes("update-product")) {
+
+        return res.render("update-product", {
+
+          errorMessages: errors.array().map(
+            (e) => e.msg
+          ),
+
+          product: {
+            id: req.params.id,
+            name: req.body.name,
+            desc: req.body.desc,
+            price: req.body.price,
+            imageUrl: req.body.imageUrl
+          }
+        });
+      }
+
+      // NEW PRODUCT PAGE
       return res.render("new-product", {
-        errorMessages: errors.array().map(e => e.msg),
+
+        errorMessages: errors.array().map(
+          (e) => e.msg
+        ),
       });
     }
 
