@@ -17,12 +17,24 @@ export const validateRequest = [
     .withMessage("Price should be a positive value"),
 
   // Image URL Validation
-  body("imageUrl")
-    .notEmpty()
-    .withMessage("Image URL is required")
-    .isURL()
-    .withMessage("Invalid URL"),
+  // Image Validation
+body("imageUrl")
+  .custom((value, { req }) => {
 
+    // allow uploaded file
+    if (req.file) {
+      return true;
+    }
+
+    // allow external URL
+    if (value && value.trim() !== "") {
+      return true;
+    }
+
+    throw new Error(
+      "Please upload an image or provide image URL"
+    );
+  }),
   // Final Middleware
   (req, res, next) => {
 

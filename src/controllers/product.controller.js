@@ -20,15 +20,37 @@ export default class ProductController {
   }
 
   // ADD NEW PRODUCT
-  addnewProduct(req, res, next) {
-    ProductModel.add(req.body);
+  
+addnewProduct(req, res, next) {
+
+    const { name, desc, price, imageUrl } = req.body;
+
+    let finalImagePath = "";
+
+    // uploaded file exists
+    if (req.file) {
+
+        finalImagePath = req.file.filename;
+    }
+    // image URL exists
+    else if (imageUrl) {
+
+        finalImagePath = imageUrl;
+    }
+
+    ProductModel.add({
+        name,
+        desc,
+        price,
+        imageUrl: finalImagePath
+    });
 
     const products = ProductModel.get();
 
     res.render("products", {
-      products,
+        products,
     });
-  }
+}
 
   // SHOW UPDATE PRODUCT FORM
   getUpdateProductVeiw(req, res, next) {

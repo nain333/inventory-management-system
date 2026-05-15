@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import ejsLayouts from 'express-ejs-layouts';
-
+import upload from "./src/controllers/middlewares/file-upload.middleware.js";
 import ProductController from "./src/controllers/product.controller.js";
 
 import { validateRequest } from './src/controllers/middlewares/validation.middleware.js';
@@ -23,7 +23,7 @@ app.use(ejsLayouts);
 
 const productController = new ProductController();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 app.get(
   '/',
@@ -37,6 +37,7 @@ app.get(
 
 app.post(
   '/add-product',
+  upload.single("imageUrl"),
   validateRequest,
   productController.addnewProduct.bind(productController)
 );

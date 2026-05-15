@@ -52,11 +52,12 @@
 
         <!-- IMAGE -->
         <td class="border px-2 py-2 md:px-4 text-center hidden sm:table-cell">
-          <img 
-            src="<%= product.imageUrl %>" 
-            class="w-16 h-24 md:w-20 md:h-28 object-cover mx-auto rounded"
-            alt="<%= product.name %>"
-          />
+        <img
+    src="<%= product.imageUrl.startsWith('http')
+        ? product.imageUrl
+        : '/images/' + product.imageUrl %>"
+    alt="product image"
+>
         </td>
 
         <!-- ACTION BUTTONS -->
@@ -73,17 +74,16 @@
             </a>
 
             <!-- DELETE BUTTON -->
-            <form 
-              action="/delete-product/<%= product.id %>" 
-              method="POST"
-            >
-              <button
-                type="submit"
-                class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm transition"
-              >
-                Delete
-              </button>
-            </form>
+            <form onsubmit="deleteProduct(event, <%= product.id %>)">
+
+  <button
+    type="submit"
+    class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm transition"
+  >
+    Delete
+  </button>
+
+</form>
 
           </div>
 

@@ -17,6 +17,7 @@
 <form
     action="/add-product"
     method="POST"
+    enctype="multipart/form-data"
     class="space-y-4"
 >
 
@@ -52,14 +53,24 @@
     </div>
 
     <div>
-        <label class="block mb-1">Image URL</label>
+    <label class="block mb-1">Upload Product Image</label>
 
-        <input
-            type="text"
-            name="imageUrl"
-            class="w-full border p-2 rounded"
-        >
-    </div>
+    <input
+        type="file"
+        name="image"
+        class="w-full border p-2 rounded"
+    >
+</div>
+
+<div>
+    <label class="block mb-1">OR Image URL</label>
+
+    <input
+        type="text"
+        name="imageUrl"
+        class="w-full border p-2 rounded"
+    >
+</div>
 
     <button
         type="submit"
