@@ -5,6 +5,7 @@ import upload from "./src/controllers/middlewares/file-upload.middleware.js";
 import ProductController from "./src/controllers/product.controller.js";
 
 import { validateRequest } from './src/controllers/middlewares/validation.middleware.js';
+import UserController from './src/controllers/user.controller.js';
 
 const app = express();
 
@@ -22,9 +23,10 @@ app.set(
 app.use(ejsLayouts);
 
 const productController = new ProductController();
+const userController=new UserController();
 
 const port = process.env.PORT || 8000;
-
+app.get('/register',userController.getRegister);
 app.get(
   '/',
   productController.getProduct.bind(productController)
