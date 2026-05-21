@@ -1,64 +1,20 @@
-import express from 'express';
-import path from 'path';
-import ejsLayouts from 'express-ejs-layouts';
-import upload from "./src/controllers/middlewares/file-upload.middleware.js";
-import ProductController from "./src/controllers/product.controller.js";
-
-import { validateRequest } from './src/controllers/middlewares/validation.middleware.js';
-import UserController from './src/controllers/user.controller.js';
-
+import express from "express";
+import path from "path";
+import ejsLayouts from "express-ejs-layouts";
+import productRoutes from "./src/routes/products.routes.js";
+import userRoutes from "./src/routes/user.routes.js";
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
-app.set(
-  'views',
-  path.join(path.resolve(), 'src', 'views')
-);
+app.set("views", path.join(path.resolve(), "src", "views"));
 
 app.use(ejsLayouts);
+app.use("/", productRoutes);
+app.use("/", userRoutes);
 
-const productController = new ProductController();
-const userController=new UserController();
-
-const port = process.env.PORT || 8000;
-app.get('/register',userController.getRegister);
-app.get(
-  '/',
-  productController.getProduct.bind(productController)
-);
-
-app.get(
-  '/new',
-  productController.getAddForm.bind(productController)
-);
-
-app.post(
-  '/add-product',
-  upload.single("imageUrl"),
-  validateRequest,
-  productController.addnewProduct.bind(productController)
-);
-
-app.get(
-  '/update-product/:id',
-  productController.getUpdateProductVeiw.bind(productController)
-);
-
-app.post(
-  '/update-product/:id',
-  validateRequest, productController.updateProduct.bind(productController)
-);
-
-app.post(
-  '/delete-product/:id',
-  productController.deleteProduct.bind(productController)
-);
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+export default app;
