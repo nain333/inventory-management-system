@@ -30,6 +30,19 @@ export default class UserController{
         req.session.userEmail=email;
         return res.redirect('/');
     }
+    signOut(req,res){
+        // on logout destroy the session;
+        req.session.destroy((err)=>{
+           if(err){
+            console.log(err);
+
+           }
+           else{
+            res.redirec('/signIn')
+           }
+
+        })
+    }
 
 
 }

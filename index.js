@@ -15,7 +15,13 @@ app.use(session({
     saveUninitialized:true,
     cookie:{secure:false}
 }))
+app.use((req,res,next)=>{
 
+   res.locals.userEmail = req.session.userEmail;
+
+   next();
+
+})
 app.set("view engine", "ejs");
 
 app.set("views", path.join(path.resolve(), "src", "views"));

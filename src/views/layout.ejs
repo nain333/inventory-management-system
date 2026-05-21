@@ -27,11 +27,16 @@
 
             <!-- Links -->
             <div class="hidden md:flex gap-6">
+                <% if(locals.userEmail){ %>
                 
                 <a href="/" class="hover:text-emerald-400 text-lg">Products</a>
                 <a href="/new" class="hover:text-emerald-400 text-lg">Add Product</a>
+                <a href="/signOut" class="hover:text-emerald-400 text-lg">Sign Out</a>
+                <% }else{ %>
+
                 <a href="/register">Register</a>
                 <a href="/signIn">Sign In</a>
+                <% } %>
             </div>
 
             <!-- Mobile button -->
