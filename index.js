@@ -3,11 +3,18 @@ import path from "path";
 import ejsLayouts from "express-ejs-layouts";
 import productRoutes from "./src/routes/products.routes.js";
 import userRoutes from "./src/routes/user.routes.js";
+import session from "express-session";
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
+app.use(session({
+    secret:'pRzOHEAJfVloHd01SKkJwamR',
+    resave:false,
+    saveUninitialized:true,
+    cookie:{secure:false}
+}))
 
 app.set("view engine", "ejs");
 

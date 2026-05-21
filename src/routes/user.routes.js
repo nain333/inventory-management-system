@@ -4,5 +4,6 @@ const userController= new UserController();
 const router=express.Router();
 router.get("/register", userController.getRegister.bind(userController));
 router.get('/signIn',userController.getSignedIn);
+router.post('/signIn',userController.postSignIn)
 router.post('/register',userController.postRegister);
 export default router;

@@ -20,6 +20,13 @@ export default class UserModel {
     console.log("user added successfuly");
     console.log(users);
   }
+  static isValidUser(email, password) {
+    const result = users.find(
+      (u) => u.email == email && u.password == password,
+    );
+
+    return result;
+  }
 }
 
 // Dummy Users
