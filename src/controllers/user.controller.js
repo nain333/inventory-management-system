@@ -38,7 +38,7 @@ export default class UserController{
 
            }
            else{
-            res.redirec('/signIn')
+            res.redirect('/signIn')
            }
 
         })
